@@ -4,18 +4,18 @@ import org.springframework.beans.factory.annotation.Lookup;
 import org.springframework.stereotype.Component;
 
 @Component
-public class Car {
-    public Car() {
+public class School {
+    public School() {
     }
 
-    @Lookup("driver")
-    public Driver getDriver() {
+    @Lookup("student")
+    public Student getStudent() {
         return null;
     }
 
-    public String drive(String driverName) {
-        Driver driver = getDriver();
-        driver.setName(driverName);
-        return driver.drive();
+    public String ask(String driverName) {
+        Student student = getStudent();
+        student.setName(driverName);
+        return student.ask();
     }
 }

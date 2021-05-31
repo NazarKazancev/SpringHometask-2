@@ -1,12 +1,10 @@
 package ru.flamesyt.springcourse;
 
-import org.apache.catalina.core.ApplicationContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 
 import javax.annotation.Resource;
 
@@ -15,28 +13,28 @@ public class ScopeController {
     public static final Logger LOG = LoggerFactory.getLogger(ScopeController.class);
 
     @Resource
-    HelloMessageGenerator requestScopedBean;
+    MessagePrinter requestScopedBean;
 
     @Resource
-    Car car;
+    School school;
 
     @RequestMapping("/scopes/request")
     public String getRequestScopeMessage() {
         System.out.println(">>>>> previousMessage: " + requestScopedBean.getMessage());
-        requestScopedBean.setMessage("Hello, World!!!");
+        requestScopedBean.setMessage("Hello, World!");
         return "currentMessage: " + requestScopedBean.getMessage();
     }
 
     @RequestMapping("/scopes/prototype")
     public String getRequestPrototypeMessage() {
-        return car.drive("Михаил");
+        return school.ask("Василий Пупкин");
     }
 
     @RequestMapping("/scopes/contextsearch")
     public String getApplicationContextSearch() {
         var context = new AnnotationConfigApplicationContext(ScopeConfiguration.class);
-        Driver driver = (Driver) context.getBean("myDriver");
-        driver.setName("Вася");
-        return driver.drive();
+        Student student = (Student) context.getBean("myStudent");
+        student.setName("Вася");
+        return student.ask();
     }
 }
