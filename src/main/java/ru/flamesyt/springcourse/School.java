@@ -13,9 +13,9 @@ public class School {
         return null;
     }
 
-    public String ask(String driverName) {
+    public String ask(String studentName) {
         Student student = getStudent();
-        student.setName(driverName);
+        student.setName(studentName);
         return student.ask();
     }
 }
