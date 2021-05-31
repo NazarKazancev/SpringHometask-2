@@ -10,8 +10,8 @@ import org.springframework.web.context.annotation.RequestScope;
 public class ScopeConfiguration {
     @Bean
     @RequestScope
-    public HelloMessageGenerator requestScopedBean() {
-        return new HelloMessageGenerator();
+    public MessagePrinter requestScopedBean() {
+        return new MessagePrinter();
     }
 
     @Bean
